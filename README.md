@@ -28,6 +28,8 @@ Then to animate an object, you just need to use attributes of the form: `data-t-
 <div data-t-0="left:0;" data-t-10="left:500px;"></div>
 ```
 
+[see example](http://sprawledoctopus.com/animatr/#example-1)
+
 ### Creating an animation timeline
 
 You can add as many animation stages as you want, and specify stages in seconds, or with percentages, or mix the two. Have a look at the following example:
@@ -38,6 +40,7 @@ You can add as many animation stages as you want, and specify stages in seconds,
      data-t-50%="transform:rotate(180deg);"
      data-t-100%="transform:rotate(180deg);"></div>
 ```
+[see example](http://sprawledoctopus.com/animatr/#example-2)
 
 The first line is specified in seconds (note that you can use decimals), and moves our `<div>` to the right in 2.5 seconds, then back again. Since 5 seconds is the largest time specified, this is the duration of the animation.
 
@@ -52,6 +55,7 @@ If you only use percentages, the animation duration will default to 10 second. Y
 <div data-t-0%="left:0;" data-t-100%="left:500px;"
      data-t="duration:5s;delay:5s;"></div>
 ```
+[see example](http://sprawledoctopus.com/animatr/#example-3)
 
 The current defaults are:
 
@@ -71,6 +75,9 @@ By default the animation plays once. To loop the animation forever, set `iterati
      data-t="duration:3s;direction:alternate;"
      data-t-loop ></div>
 ```
+[see example](http://sprawledoctopus.com/animatr/#example-4)
+
+
 ### Keyframes
 
 You can mix in CSS @keyframes to your animation - this can be useful if you're reusing the same effect over and over. Just specify the keyframes in your CSS (you only need to use the W3C non-prefixed @keyframes). And since we're making up pseudo-CSS anyway, lets add a new attribute: `keyframes`
@@ -87,6 +94,7 @@ You can mix in CSS @keyframes to your animation - this can be useful if you're r
       data-t="keyframes:colorchange;">
 
 ```
+[see example](http://sprawledoctopus.com/animatr/#example-5)
 
 You can add multiple keyframes, separated by a space. Animatr will mix together any keyframes that it can read directly - ones specified before the script is run, and with [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) enabled - into one animation. Any @keyframes it can't read directly will still be run. 
 
@@ -101,6 +109,7 @@ You can specify multiple animations to run simultaneously, or sequence them one 
      data-t2-25%="top:-20px;" data-t2-75%="top:20%;"
 	 data-t2-loop="5"></div>
 ```
+[see example](http://sprawledoctopus.com/animatr/#example-6)
 
 In this example, the first animation `data-t`, moves our `<div>` left-to-right in 10 seconds. At the same time, the second animation `data-t2` wiggles the `<div>` up and down 5 times as it goes along.
 

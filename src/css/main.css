@@ -10,7 +10,7 @@ header h2 {font-size:3vw;margin-top:-1vh;margin-bottom:4vh;}
 .example button {margin-bottom:20px;}
 .demo {position:relative;width:100%;height:130px;}
 .demo div {width:100px;height:100px;display:block;position:absolute;top:0;left:0;background-color:rgb(140,140,255);
-	background-image:url('../octo.png');background-size:100px;border:1px solid darkblue;}
+	background-image:url('octo.png');background-size:100px;border:1px solid darkblue;}
 
 	
 /*code highlighting */
