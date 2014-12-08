@@ -14,18 +14,11 @@
 		return Animatr(this('body *'),opts);
 	}
 
-	
-	// Plugin data:
-	// keyframes: object with all keyframes assigned in CSS (that the plugin can read)
-	// animations: array with all new keyframes that are created
 	var global = {
 		keyframes: getKeyframes(),	
 		animations: []
 	};	
 
-	
-	// Library
-	
 	function merge(obj1, obj2) {
 		for(var attrname in obj2) {
 			if(obj1.hasOwnProperty(attrname) ) obj1[attrname] = $.extend(obj1[attrname],obj2[attrname]);
@@ -90,9 +83,6 @@
 		return keyframes;
 	}
 
-	
-
-
 	function getAttributes(obj,settings) {
 		var data = {};
 		$.each(obj[0].attributes, function() {
@@ -114,8 +104,7 @@
 		});
 		return data;
 	}
-	
-	
+		
 	function checkAnim(anim,pos) {
 		if(anim.length != global.animations[pos].length) return false;
 		for(var i=0;i<anim.length;i++) {
@@ -131,11 +120,9 @@
 			anim.push([parseFloat(i),getObjCSS(frames[i])]);
 		}
 		anim.sort(function(a,b) { return a[0] - b[0] });
-		
 		for(var i=0;i<length;i++) {
 			if(checkAnim(anim,i)) return i;
 		}
-		
 		frames.name = 'Animatr'+length;
 		$.keyframe.define([frames]);
 		global.animations.push(anim);
@@ -177,7 +164,6 @@
 		return selector.each(function(){                                                                                                                            
 			var obj = $(this);
 			if( !obj.data('Animatr') ) {
-
 				var data = getAttributes(obj, settings);				
 				if(!$.isEmptyObject(data)) {
 					for(var i in data) { 
@@ -192,7 +178,6 @@
 							}
 						}
 					}
-
 					var instructions = [];
 					for(var i in data) {
 						var frames = {};
@@ -230,5 +215,5 @@
 			}
 		});
 	}
-	
+
 })( jQuery, window, document );
