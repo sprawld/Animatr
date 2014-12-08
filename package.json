@@ -1,6 +1,11 @@
 {
   "name": "Animatr",
   "version": "0.1.0",
+  "author": "@sprawld <pete@sprawledoctopus.com>",
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/sprawld/Animatr"
+  },
   "description": "A jQuery plugin that creates CSS3 animations from HTML5 data-attributes",
   "keywords": [
     "CSS animation",
