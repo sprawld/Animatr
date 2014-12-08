@@ -1,0 +1,71 @@
+body {font-family: 'Quattrocento Sans', sans-serif;}
+header h1, header h2 {text-align:center;padding:0;margin:0;font-weight:normal;}
+header h1 {font-size:8vw;margin-top:10vh;}
+header h2 {font-size:3vw;margin-top:-1vh;margin-bottom:4vh;}
+
+.pendulum {width:50%;margin:auto;height:80vh;margin-bottom:5vh;position:relative;}
+.pendulum i {border-radius:100%;display:block;width:4.5vh;height:4.5vh;
+	background-color:rgba(255,0,0,1);position:absolute;left:50%;}
+
+.example button {margin-bottom:20px;}
+.demo {position:relative;width:100%;height:130px;}
+.demo div {width:100px;height:100px;display:block;position:absolute;top:0;left:0;background-color:rgb(140,140,255);
+	background-image:url('../octo.png');background-size:100px;border:1px solid darkblue;}
+
+	
+/*code highlighting */
+
+
+
+	.hljs-comment
+{color:#1abc9c}
+
+	.hljs-keyword
+{color:#2980b9}
+
+	.hljs-number,
+	.hljs-string,
+	.hljs-tag,
+	.hljs-value,
+	.hljs-rule
+{color:#c0392b}
+
+	.hljs-title
+{color:#8e44ad}
+
+	.hljs-attribute
+{color:#3498db}
+	.hljs-keyword
+{color:#e67e22}
+
+.hljs-value .hljs-css {color:#e74c3c}
+
+	
+	
+@keyframes wave {
+	0% {margin-top:0px;}
+	25% {margin-top:-10px;}
+	50% {margin-top:0px;}
+	75% {margin-top:10px;}
+	100% {margin-top:0px;}
+}
+
+@keyframes glow {
+	0% {background-color:rgba(255,0,0,1);}
+	50% {background-color:rgba(0,0,255,1);}
+	100% {background-color:rgba(255,0,0,1);}
+}
+
+@keyframes pendulum {
+	0% {margin-left:25%;}
+	50% {margin-left:-25%;}
+	100% {margin-left:25%;}
+}
+
+@keyframes colorchange {
+	0% { background-color:rgb(140,140,255); }
+	100% { background-color:rgb(140,255,140); }
+}
+
+
+
