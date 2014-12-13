@@ -5,6 +5,7 @@
 */
 
 ;(function ( $, window, document, undefined ) {
+	'use strict';
 	
     $.fn.animatr = function(opts) {
 		return Animatr(this,opts);
@@ -16,16 +17,15 @@
 
 	
 	// Plugin data:
-	// keyframes: object with all keyframes assigned in CSS (that the plugin can read)
-	// animations: array with all new keyframes that are created
 	var global = {
-		keyframes: getKeyframes(),	
-		animations: []
+		keyframes: getKeyframes(),	//object with @keyframes read from CSS
+		animations: []				//array with new keyframes created by Animatr
 	};	
 
 	
-	// Library
-	
+	// Library functions:
+
+	// Merge - used to combine two Keyframe objects.
 	function merge(obj1, obj2) {
 		for(var attrname in obj2) {
 			if(obj1.hasOwnProperty(attrname) ) obj1[attrname] = $.extend(obj1[attrname],obj2[attrname]);
@@ -33,6 +33,10 @@
 		}
 	}
 
+	
+	// Convert CSS string to Object:
+	
+	// Convert keyframe string into an object
 	function getKeyframeObj(text) {
 		var obj = {};
 		text.replace(/([0-9]*\%)[^\{\}]*\{([^\}\{]*)\}/g,function($1,$2,$3) { 
@@ -42,12 +46,27 @@
 		return obj;
 	}
 
+	// Convert CSS string into an object
 	function getCSSObj(text) {
 		var obj = {};
 		text.replace(/([a-zA-Z_-]+)[^\w:]*:\s*([^;]+)/g,function($1,$2,$3) { obj[$2] = $3; });
 		return obj;
 	}
 
+	// Convert pseudo-CSS (from Animation Settings) into an object, converting snake-case property names to camelCase
+	function getCamelCaseObj(text) {
+		var obj = {};
+		text.replace(/([\-\w]+)[^\-\w:]*:\s*([^;]+)/g,function($1,$2,$3) {
+			obj[ $2.replace(/(\-[a-z])/g, function($1){return $1.toUpperCase().replace('-','');}) ] = $3;
+		});
+		return obj;
+	}
+
+	
+	// Convert Objects into CSS strings:
+	// CSS properties are added in alphabetical order, so that string comparison will identify identical objects
+	
+	// Convert a CSS object into a string
 	function getObjCSS(obj) {
 		var arr = [], text = "";
 		for(var i in obj) arr.push([i,obj[i]]);
@@ -56,14 +75,18 @@
 		return text;
 	}
 	
-	function getCamelCaseObj(text) {
-		var obj = {};
-		text.replace(/([\-\w]+)[^\-\w:]*:\s*([^;]+)/g,function($1,$2,$3) {
-			obj[ $2.replace(/(\-[a-z])/g, function($1){return $1.toUpperCase().replace('-','');}) ] = $3;
-		});
-		return obj;
+	// Convert a keyframes object to string
+	function getObjKeyframes(obj) {
+		var arr = [], text = "";
+		for(var i in obj) arr.push([parseFloat(i),getObjCSS(obj[i])]);
+		arr.sort(function(a,b) { return a[0]-b[0]; });
+		for(var i=0;i<arr.length;i++) text+= arr[i][0]+'%{'+arr[i][1]+'}';
+		return text;
 	}
 	
+	
+
+	// Create keyframes objects of any @keyframes in the CSS that can be read (depends on CORS)
 	function getKeyframes() {
 		var styles = document.styleSheets;
 		var type = window.CSSRule.WEBKIT_KEYFRAMES_RULE || window.CSSRule.KEYFRAMES_RULE;
@@ -90,9 +113,7 @@
 		return keyframes;
 	}
 
-	
-
-
+	// Check element for any data-t attributes, and return a config object
 	function getAttributes(obj,settings) {
 		var data = {};
 		$.each(obj[0].attributes, function() {
@@ -114,26 +135,13 @@
 		});
 		return data;
 	}
-	
-	
-	function checkAnim(anim,pos) {
-		if(anim.length != global.animations[pos].length) return false;
-		for(var i=0;i<anim.length;i++) {
-			if(anim[i][0] !== global.animations[pos][i][0] || anim[i][1] !== global.animations[pos][i][1]) return false;
-		}
-		return true;
-	}
 
+	// Add a new set of animation keyframes to global store *if* it is new
 	function addAnim(frames) {
 		var length = global.animations.length;
-		var anim = [];
-		for(var i in frames) {
-			anim.push([parseFloat(i),getObjCSS(frames[i])]);
-		}
-		anim.sort(function(a,b) { return a[0] - b[0] });
-		
+		var anim = getObjKeyframes(frames);
 		for(var i=0;i<length;i++) {
-			if(checkAnim(anim,i)) return i;
+			if(global.animations[i] == anim) return i;
 		}
 		
 		frames.name = 'Animatr'+length;
@@ -142,20 +150,18 @@
 		return length;
 	}
 	
+	// restart animation
 	function replayAnimation(obj) {
 		if(obj.data('Animatr')) {
 			obj.resetKeyframe(function() {
-				obj[0].offsetWidth = obj[0].offsetWidth;
+				var temp = obj[0].offsetWidth; //Trigger reflow
 				obj.playKeyframe(obj.data('Animatr'));
 			});
 		}
-	}	
-	
-	
-	function playAnimation(obj, instructions) {
-		if(instructions.length) obj.playKeyframe(instructions).data('Animatr',instructions);
 	}
-	
+
+
+	// Main function:
 	
 	function Animatr(selector,opts) {
 
@@ -224,8 +230,8 @@
 						data[i].config.name = "Animatr" + addAnim(frames);
 						instructions.push(data[i].config);
 					}
-					
-					playAnimation(obj,instructions);
+		
+					if(instructions.length) obj.playKeyframe(instructions).data('Animatr',instructions);
 				}
 			}
 		});

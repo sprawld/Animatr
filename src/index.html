@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Quattrocento+Sans" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/main.css" />
 
 	<script src="js/lib/modernizr-2.8.3.min.js"></script>
@@ -26,6 +26,9 @@
 	</script>
 </head>
 <body>
+
+<a href="https://github.com/sprawld/Animatr/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
 <header>
 	<h1>Animatr</h1>
 	<h2>CSS3 animations with HTML5 data-attributes</h2>
@@ -76,23 +79,24 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 	
 	<p>Then to animate an object, you just need to use attributes of the form: <code>data-t-&lt;seconds&gt;</code>. For example, let&#39;s move a <code>&lt;div&gt;</code> 500 pixels right in 10 seconds:</p>
 
+<div id="example-1">
 	
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-t-25%</span>=<span class="hljs-value">"<span class="hljs-css">transform:</span>rotate(270deg);"</span> <span class="hljs-attribute">data-t-75%</span>=<span class="hljs-value">"<span class="hljs-css">transform:</span>scale(0.6) rotate(270deg);"</span>
-     <span class="hljs-attribute">data-t</span>=<span class="hljs-value">"<span class="hljs-css">duration:</span>5s;<span class="hljs-css">delay:</span>1s;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-t-10</span>=<span class="hljs-value">"<span class="hljs-css">left:</span>500px;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 
-
-		<div class="example" id="example-1">
-			<button class="btn btn-primary single">Click to start</button>
-			<div class="demo">
-				<div data-t-25%="transform:rotate(270deg);" data-t-75%="transform:scale(0.6) rotate(270deg);"
-					 data-t="duration:5s;delay:1s;"></div>
-			</div>
+	<div class="example">
+		<button class="btn btn-primary single">Click to start</button>
+		<div class="demo">
+			<div data-t-10="left:500px;"></div>
 		</div>
+	</div>
+
+</div>
 
 	<h3 id="creating-an-animation-timeline">Creating an animation timeline</h3>
-	<p>You can add as many animation stages as you want, and specify stages in seconds, or with percentages, or mix the two. Have a look at the following example:</p>
 
+<div id="example-2">
+	<p>You can add as many animation stages as you want, and specify stages in seconds, or with percentages, or mix the two. Have a look at the following example:</p>
 	
 <pre><code class="lang-html">        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-t-0</span>=<span class="hljs-value">"<span class="hljs-css">left:</span>0;"</span> <span class="hljs-attribute">data-t-2.5</span>=<span class="hljs-value">"<span class="hljs-css">left:</span>500px;"</span> <span class="hljs-attribute">data-t-5</span>=<span class="hljs-value">"<span class="hljs-css">left:</span>0;"</span>
              <span class="hljs-attribute">data-t-0%</span>=<span class="hljs-value">"<span class="hljs-css">transform:</span>rotate(0deg);"</span>
@@ -101,7 +105,7 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 </code></pre>
 
 
-		<div class="example" id="example-2">
+		<div class="example">
 			<button class="btn btn-primary single">Click to start</button>
 			<div class="demo">
 				<div data-t-0="left:0;" data-t-2.5="left:500px;" data-t-5="left:0;"
@@ -110,10 +114,14 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 					 data-t-100%="transform:rotate(180deg);"></div>
 			</div>
 		</div>
+</div>
 
 	<p>The first line is specified in seconds (note that you can use decimals), and moves our <code>&lt;div&gt;</code> to the right in 2.5 seconds, then back again. Since 5 seconds is the largest time specified, this is the duration of the animation.</p>
 	<p>The second line is specified in percentages, and rotates the <code>&lt;div&gt;</code> in the first half of the animation. In this case, this will occur at 50% = 2.5 seconds.</p>
+
 	<h3 id="animation-settings">Animation Settings</h3>
+
+<div id="example-3">
 	<p>If you only use percentages, the animation duration will default to 10 second. You can change this, and any other <a href="http://www.w3.org/TR/css3-animations/#contents">animation settings</a> using the root <code>data-t</code> attribute. You don&#39;t need to use the <em>animation-</em> prefix in this pseudo-CSS:</p>
 
 	
@@ -122,18 +130,17 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 </code></pre>
 
 
-		<div class="example" id="example-3">
+		<div class="example">
 			<button class="btn btn-primary single">Click to start</button>
 			<div class="demo">
 				<div data-t-0%="left:0;" data-t-100%="left:500px;"
 					 data-t="duration:5s;delay:2s;"></div>
 			</div>
 		</div>
-
+</div>
 
 	<p>The current defaults are:</p>
 
-	
 <pre><code class="lang-html"><span class="hljs-attribute">duration</span>: <span class="hljs-value">10s</span>;
 <span class="hljs-attribute">timing-function</span>: <span class="hljs-value">ease</span>;
 <span class="hljs-attribute">delay</span>: <span class="hljs-value">0s</span>;
@@ -142,9 +149,8 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 <span class="hljs-attribute">fill-mode</span>: <span class="hljs-value">forwards</span>;
 </code></pre>
 
-
+<div id="example-4">
 	<p>By default the animation plays once. To loop the animation forever, set <code>iteration-count: infinite</code>, or use the shorthand attribute <code>data-t-loop</code></p>
-
 	
 <pre><code class="lang-html">        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-t-0</span>=<span class="hljs-value">"<span class="hljs-css">left:</span>0;<span class="hljs-css">transform:</span>rotate(0deg);"</span>
              <span class="hljs-attribute">data-t-3</span>=<span class="hljs-value">"<span class="hljs-css">transform:</span>rotate(540deg);<span class="hljs-css">left:</span>500px;"</span>
@@ -153,7 +159,7 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 </code></pre>
 
 
-		<div class="example" id="example-4">
+		<div class="example">
 			<button class="btn btn-primary infinite">Click to start</button>
 			<div class="demo">
 				<div data-t-0="left:0;transform:rotate(0deg);"
@@ -162,10 +168,13 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 					 data-t-loop ></div>
 			</div>
 		</div>
+</div>
 
 	<h3 id="keyframes">Keyframes</h3>
-	<p>You can mix in CSS @keyframes to your animation - this can be useful if you&#39;re reusing the same effect over and over. Just specify the keyframes in your CSS (you only need to use the W3C non-prefixed @keyframes). And since we&#39;re making up pseudo-CSS anyway, lets add a new attribute: <code>keyframes</code></p>
 
+<div id="example-5">
+
+	<p>You can mix in CSS @keyframes to your animation - this can be useful if you&#39;re reusing the same effect over and over. Just specify the keyframes in your CSS (you only need to use the W3C non-prefixed @keyframes). And since we&#39;re making up pseudo-CSS anyway, lets add a new attribute: <code>keyframes</code></p>
 	
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
   <span class="hljs-at_rule">@<span class="hljs-keyword">keyframes</span> colorchange </span>{
@@ -180,18 +189,22 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
 </code></pre>
 
 
-		<div class="example" id="example-5">
-			<button class="btn btn-primary single">Click to start</button>
-			<div class="demo">
-			
-				<div data-t="keyframes:colorchange" data-t-5="transform:rotate(180deg);"></div>
-			</div>
+	<div class="example">
+		<button class="btn btn-primary single">Click to start</button>
+		<div class="demo">
+		
+			<div data-t="keyframes:colorchange" data-t-5="transform:rotate(180deg);"></div>
 		</div>
+	</div>
+</div>
 
 	<p>You can add multiple keyframes, separated by a space. Animatr will mix together any keyframes that it can read directly - ones specified before the script is run, and with <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a> enabled - into one animation. Any @keyframes it can&#39;t read directly will still be run. </p>
-	<h3 id="multiple-animations">Multiple Animations</h3>
-	<p>You can specify multiple animations to run simultaneously, or sequence them one after another with delays. Simply add a positive number after the t: <code>data-t1-</code>, <code>data-t2-</code>, etc. Each animation can be given its own settings and keyframes. This can be useful if you want to mix animation loops of different lengths:</p>
 
+	<h3 id="multiple-animations">Multiple Animations</h3>
+
+<div id="example-6">
+
+	<p>You can specify multiple animations to run simultaneously, or sequence them one after another with delays. Simply add a positive number after the t: <code>data-t1-</code>, <code>data-t2-</code>, etc. Each animation can be given its own settings and keyframes. This can be useful if you want to mix animation loops of different lengths:</p>
 
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-t-0</span>=<span class="hljs-value">"<span class="hljs-css">left:</span>0;"</span> <span class="hljs-attribute">data-t-10</span>=<span class="hljs-value">"<span class="hljs-css">left:</span>100%;"</span>
      <span class="hljs-attribute">data-t2-0</span>=<span class="hljs-value">"<span class="hljs-css">top:</span>0;"</span> <span class="hljs-attribute">data-t2-2</span>=<span class="hljs-value">"<span class="hljs-css">top:</span>0;"</span>
@@ -199,16 +212,16 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span><span cl
      <span class="hljs-attribute">data-t2-loop</span>=<span class="hljs-value">"5"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 
-
-		<div class="example" id="example-6">
-			<button class="btn btn-primary single">Click to start</button>
-			<div class="demo">
-				<div data-t-0="left:0;" data-t-10="left:100%;"
-					 data-t2-0="top:0;" data-t2-2="top:0;"
-					 data-t2-50%="top:40px;"
-					 data-t2-loop="5"></div>
-			</div>
+	<div class="example">
+		<button class="btn btn-primary single">Click to start</button>
+		<div class="demo">
+			<div data-t-0="left:0;" data-t-10="left:100%;"
+				 data-t2-0="top:0;" data-t2-2="top:0;"
+				 data-t2-50%="top:40px;"
+				 data-t2-loop="5"></div>
 		</div>
+	</div>
+</div>
 
 	<p>In this example, the first animation <code>data-t</code>, moves our <code>&lt;div&gt;</code> left-to-right in 10 seconds. At the same time, the second animation <code>data-t2</code> wiggles the <code>&lt;div&gt;</code> up and down 5 times as it goes along.</p>
 	<p><strong>Be careful not to specify the same CSS attributes in different animations, browsers don&#39;t like that.</strong></p>
@@ -237,8 +250,8 @@ $(<span class="hljs-string">'div'</span>).animatr();          <span class="hljs-
 
 
 	<h3 id="options">Options</h3>
-	<p>Animatr accepts global animation settings. These will be overwritten by any elements&#39; local settings in <code>data-t</code> (etc). Keyframes will all be added together.</p>
 
+	<p>Animatr accepts global animation settings. These will be overwritten by any elements&#39; local settings in <code>data-t</code> (etc). Keyframes will all be added together.</p>
 	
 <pre><code class="lang-javascript">$(<span class="hljs-string">'selector'</span>).animatr( <span class="hljs-string">"keyframes:colorchange;iteration-count:infinite;"</span> );
 </code></pre>
@@ -255,6 +268,11 @@ $.animatr(<span class="hljs-string">"restart"</span>); <span class="hljs-comment
 
 	</div>
 </div>
+<footer class="container">
+			<a href="https://github.com/sprawld/Animatr"><i class="fa fa-github"></i> Github</a>
+			<a href="https://twitter.com/sprawld"><i class="fa fa-twitter"></i>@sprawld</a>
+</footer>
+
 <script>
 $(function() {
 	$('.example button').click(function() {

@@ -1,4 +1,13 @@
+/* Using Google fonts Quattrocento Sans: http://www.google.com/fonts/specimen/Quattrocento */
+@font-face {
+  font-family: 'Quattrocento Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Quattrocento Sans'), local('QuattrocentoSans'), url(QuattrocentoSans.woff2) format('woff2'), url(QuattrocentoSans.woff) format('woff');
+}
+
 body {font-family: 'Quattrocento Sans', sans-serif;}
+
 header h1, header h2 {text-align:center;padding:0;margin:0;font-weight:normal;}
 header h1 {font-size:8vw;margin-top:10vh;}
 header h2 {font-size:3vw;margin-top:-1vh;margin-bottom:4vh;}
@@ -13,34 +22,26 @@ header h2 {font-size:3vw;margin-top:-1vh;margin-bottom:4vh;}
 	background-image:url('octo.png');background-size:100px;border:1px solid darkblue;}
 
 	
-/*code highlighting */
 
+footer {width:100%;text-align:center;padding-top:40px;padding-bottom:40px;}
 
-
-	.hljs-comment
-{color:#1abc9c}
-
-	.hljs-keyword
-{color:#2980b9}
-
-	.hljs-number,
-	.hljs-string,
-	.hljs-tag,
-	.hljs-value,
-	.hljs-rule
-{color:#c0392b}
-
-	.hljs-title
-{color:#8e44ad}
-
-	.hljs-attribute
-{color:#3498db}
-	.hljs-keyword
-{color:#e67e22}
-
-.hljs-value .hljs-css {color:#e74c3c}
+footer a {color:#333;padding:20px;font-size:26px;}
+footer a i.fa.fa-twitter {color:#5ea9dd;font-size:30px;}
+footer a:hover {text-decoration:none;color:black;}
+	
 
 	
+	
+/*code highlighting */
+
+.hljs-comment {color:#1abc9c}
+.hljs-keyword {color:#2980b9}
+.hljs-number, .hljs-string, .hljs-tag, .hljs-value, .hljs-rule {color:#c0392b}
+.hljs-title {color:#8e44ad}
+.hljs-attribute {color:#3498db}
+.hljs-keyword {color:#e67e22}
+.hljs-value .hljs-css {color:#e74c3c}
+
 	
 @keyframes wave {
 	0% {margin-top:0px;}
@@ -66,6 +67,3 @@ header h2 {font-size:3vw;margin-top:-1vh;margin-bottom:4vh;}
 	0% { background-color:rgb(140,140,255); }
 	100% { background-color:rgb(140,255,140); }
 }
-
-
-

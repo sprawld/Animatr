@@ -1,6 +1,6 @@
 {
   "name": "Animatr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "@sprawld <pete@sprawledoctopus.com>",
   "repository": {
 	"type": "git",
@@ -11,10 +11,6 @@
     "CSS animation",
     "jQuery"
   ],
-  "dependencies": {
-    "PrefixFree": "LeaVerou/prefixfree",
-    "jQueryKeyframes": "jQueryKeyframes/jQuery.Keyframes"
-  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-banner": "^0.2.3",
